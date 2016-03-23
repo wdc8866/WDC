@@ -1,0 +1,71 @@
+先合并本地测试环境项目然后提交到svn(提交时要注意文件内容)
+
+本地
+进入到E:\Workspaces\claimV5.1.1\SIT\modules\webapp下
+新建一个txt文件里面填上要升级的文件内容名字是版本号
+
+打开cmd
+进入到E盘的
+E:\Workspaces\claimV5.1.1\SIT\modules\webapp下
+
+把文件打成jar包    @62761.txt代表读取文件的内容进行打包
+jar -cvf 62761.jar @62761.txt
+
+
+
+测试环境
+
+进入更新的目录
+cd /webApps/claimApp/installedApps/claimcell/claim_war.ear/claim.war
+
+把62761.jar文件复制到目录
+
+解包 解包时服务会停
+jar -xvf 62761.jar
+
+密码
+scyz96
+cs133
+
+服务目录
+/webApps/claimApp/bin
+
+/webApps/claim_37App/bin
+
+停止服务
+./stopServer.sh server1
+用户名密码
+admin/sinosoft
+
+admin/admin
+
+启动服务
+./startServer.sh server1
+
+
+更新jsp需要删除文件夹下的缓存文件
+
+测试环境
+cd /webApps/claimApp/temp/claimnode/server1/claim_war/claim.war
+
+验证环境延保
+cd /webApps/claim_37App/temp/claim_37node/server1/claim_37_war/claim_37.war
+
+查询目录下文件及文件夹
+ls
+删除目录下所有文件及文件夹
+rm -rf *
+
+杀进程
+进程号文件/webApps/claimApp/logs/server1/server1.pid
+6199
+kill -9 6199
+
+
+日志文件夹
+cd /webApps/claimApp/logs/server1
+
+cd /webApps/claim_37App/logs/server1
+
+查看日志
+tail -f SystemOut.log
